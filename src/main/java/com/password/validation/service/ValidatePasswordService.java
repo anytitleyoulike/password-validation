@@ -10,10 +10,11 @@ public class ValidatePasswordService {
 
     public void isValid(String password) throws ValidationException {
 
-        Pattern specailCharPatten = Pattern.compile("[^a-z0-9 ]");
-        Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
-        Pattern lowerCasePatten = Pattern.compile("[a-z ]");
-        Pattern digitCasePatten = Pattern.compile("[0-9 ]");
+        Pattern specialCharPattern = Pattern.compile("[^a-z0-9 ]");
+        Pattern UpperCasePattern = Pattern.compile("[A-Z ]");
+        Pattern lowerCasePattern = Pattern.compile("[a-z ]");
+        Pattern digitCasePattern = Pattern.compile("[0-9 ]");
+        Pattern whiteSpacePattern = Pattern.compile("\\s");
 
         if( password.equals("")) {
             throw new ValidationException("campo vazio");
@@ -21,18 +22,22 @@ public class ValidatePasswordService {
         if (password.length() < 9) {
             throw new ValidationException("A senha possui menos de 8 campos");
         }
-        if (!specailCharPatten.matcher(password).find()) {
+        if (!specialCharPattern.matcher(password).find()) {
             throw new ValidationException("A senha precisa conter caracter especial");
         }
-        if (!UpperCasePatten.matcher(password).find()) {
+        if (!UpperCasePattern.matcher(password).find()) {
             throw new ValidationException("A senha precisa conter ao menos uma letra maiúscula");
         }
-        if (!lowerCasePatten.matcher(password).find()) {
+        if (!lowerCasePattern.matcher(password).find()) {
             throw new ValidationException("A senha precisa conter ao menos uma letra minúscula");
         }
 
-        if(!digitCasePatten.matcher(password).find()){
+        if(!digitCasePattern.matcher(password).find()){
             throw new ValidationException("A senha precisa conter ao menos um número");
+        }
+
+        if(whiteSpacePattern.matcher(password).find()){
+            throw new ValidationException("A senha não pode ter espaços em branco.");
         }
 
         String pass = password.toLowerCase();
