@@ -1,3 +1,5 @@
 # password-validation
 
-Wip: Please clone the repo and open with intellij
+- Please execute the jar file on the main directory
+
+`java -jar validation-0.0.1-SNAPSHOT.jar`
