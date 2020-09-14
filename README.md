@@ -1,7 +1,7 @@
 # password-validation
 
-- Please execute the jar file on the main directory
-> Java version 14
+- Please execute the jar file on the **main** directory
+> Java version: 8 or higher
 
     java -jar validation-0.0.1-SNAPSHOT.jar
 
